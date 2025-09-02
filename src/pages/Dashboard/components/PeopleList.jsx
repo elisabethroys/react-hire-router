@@ -13,3 +13,7 @@ function PeopleList(props) {
 }
 
 export default PeopleList
+
+PeopleList.propTypes = {
+  people: PeopleListItem.propTypes.person
+}
