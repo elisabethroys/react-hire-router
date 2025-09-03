@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 
 import HireForm from './components/HireForm'
 
-function PersonProfile({people}) {
+function PersonProfile({people, onHire}) {
   const { id } = useParams()
   const [person, setPerson] = useState(null)
   
@@ -20,7 +20,7 @@ function PersonProfile({people}) {
       <h2>
         {person.name.first} {person.name.last}
       </h2>
-      <HireForm person={person} />
+      <HireForm person={person} onHire={onHire}/>
     </article>
   )
 }
@@ -29,4 +29,5 @@ export default PersonProfile
 
 PersonProfile.propTypes = {
   people: PropTypes.array.isRequired,
+  onHire: PropTypes.func.isRequired,
 }
