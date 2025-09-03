@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-function PeopleListItem( {person}) {
+function PeopleListItem( {person, listType}) {
 
   return (
     <li>
@@ -10,7 +10,7 @@ function PeopleListItem( {person}) {
       </h3>
       {person.wage && <p>Wage: £{person.wage}</p>}
       <Link to={`/view/${person.login.uuid}`}>
-          View profile
+          {listType === "hired" ? "Edit Profile" : "View Profile"}
       </Link>
     </li>
   )
@@ -29,4 +29,5 @@ PeopleListItem.propTypes = {
       uuid: PropTypes.string,
     }).isRequired,
   }).isRequired,
+  listType: PropTypes.string,
 }

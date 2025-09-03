@@ -4,14 +4,16 @@ import { useParams } from 'react-router-dom'
 
 import HireForm from './components/HireForm'
 
-function PersonProfile({people, onHire}) {
+function PersonProfile({people, hiredPeople, onHire}) {
   const { id } = useParams()
   const [person, setPerson] = useState(null)
+
   
   useEffect(() => {
-    const clickedPerson = people.find(person => person.login.uuid === id)
-    setPerson(clickedPerson)
-  }, [id, people])
+    const originalPerson = people.find(p => p.login.uuid === id)
+    const hiredPerson = hiredPeople.find(p => p.login.uuid === id)
+    setPerson(hiredPerson || originalPerson)
+  }, [id, people, hiredPeople])
 
   if (!person) return <p>Loading...</p>
 
@@ -29,5 +31,6 @@ export default PersonProfile
 
 PersonProfile.propTypes = {
   people: PropTypes.array.isRequired,
+  hiredPeople: PropTypes.array.isRequired,
   onHire: PropTypes.func.isRequired,
 }
