@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -11,6 +11,11 @@ function HireForm({person, onHire}) {
     onHire({...person, wage})
     navigate("/")
   }
+
+  useEffect(() => {
+    setWage(person.wage || 0)
+  }, [person])
+
 
   return (
     <form onSubmit={handleSubmit}>
